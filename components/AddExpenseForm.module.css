@@ -1,0 +1,43 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 32px;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.subheading {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+}
+
+.input {
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.button {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #111;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.button:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #c00;
+  margin: 0;
+  font-size: 0.9rem;
+}
