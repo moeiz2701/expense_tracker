@@ -1,15 +1,7 @@
 import db from "@/lib/db";
 import styles from "./page.module.css";
 import ExpensesView from "../components/ExpensesView";
-
-type Expense = {
-  id: string;
-  title: string;
-  amount: number;
-  category: string;
-  date: string;
-  createdAt: string;
-};
+import { Expense } from "@/types/expense";
 
 export default function Home() {
   const expenses = db

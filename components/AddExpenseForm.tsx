@@ -2,22 +2,12 @@
 
 import { useState } from "react";
 import styles from "./AddExpenseForm.module.css";
-
-const CATEGORIES = ["stay", "food", "transport", "other"] as const;
-
-type Expense = {
-  id: string;
-  title: string;
-  amount: number;
-  category: string;
-  date: string;
-  createdAt: string;
-};
+import { Expense, Category, CATEGORIES } from "@/types/expense";
 
 export default function AddExpenseForm({ onAdd }: { onAdd: (e: Expense) => void }) {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
-  const [category, setCategory] = useState<(typeof CATEGORIES)[number]>("food");
+  const [category, setCategory] = useState<Category>("food");
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -82,7 +72,7 @@ export default function AddExpenseForm({ onAdd }: { onAdd: (e: Expense) => void 
       <select
         className={styles.input}
         value={category}
-        onChange={(e) => setCategory(e.target.value as (typeof CATEGORIES)[number])}
+        onChange={(e) => setCategory(e.target.value as Category)}
       >
         {CATEGORIES.map((c) => (
           <option key={c} value={c}>

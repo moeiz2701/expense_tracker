@@ -3,25 +3,15 @@
 import { useState } from "react";
 import AddExpenseForm from "./AddExpenseForm";
 import styles from "./ExpensesView.module.css";
-
-type Expense = {
-  id: string;
-  title: string;
-  amount: number;
-  category: string;
-  date: string;
-  createdAt: string;
-};
-
-const CATEGORIES = ["stay", "food", "transport", "other"] as const;
+import { Expense, Category, CATEGORIES } from "@/types/expense";
 
 export default function ExpensesView({ initialExpenses }: { initialExpenses: Expense[] }) {
   const [expenses, setExpenses] = useState<Expense[]>(initialExpenses);
-  const [filter, setFilter] = useState<"all" | (typeof CATEGORIES)[number]>("all");
+  const [filter, setFilter] = useState<"all" | Category>("all");
 
   const total = expenses.reduce((sum, e) => sum + e.amount, 0);
 
-  async function changeFilter(value: "all" | (typeof CATEGORIES)[number]) {
+  async function changeFilter(value: "all" | Category) {
     setFilter(value);
     const url = value === "all" ? "/api/expenses" : `/api/expenses?category=${value}`;
     const res = await fetch(url);
@@ -54,7 +44,7 @@ export default function ExpensesView({ initialExpenses }: { initialExpenses: Exp
       <select
         className={styles.filter}
         value={filter}
-        onChange={(e) => changeFilter(e.target.value as "all" | (typeof CATEGORIES)[number])}
+        onChange={(e) => changeFilter(e.target.value as "all" | Category)}
       >
         <option value="all">All categories</option>
         {CATEGORIES.map((c) => (

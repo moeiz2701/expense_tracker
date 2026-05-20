@@ -8,7 +8,7 @@ db.exec(`
     id TEXT PRIMARY KEY,
     title TEXT NOT NULL,
     amount REAL NOT NULL CHECK (amount > 0),
-    category TEXT NOT NULL CHECK (category IN ('food', 'transport', 'utilities', 'other')),
+    category TEXT NOT NULL CHECK (category IN ('stay', 'food', 'transport', 'other')),
     date TEXT NOT NULL,
     createdAt TEXT NOT NULL
   )

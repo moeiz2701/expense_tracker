@@ -1,19 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { randomUUID } from "crypto";
 import db from "@/lib/db";
-
-const CATEGORIES = ["stay", "food", "transport","other"] as const;
-type Category = (typeof CATEGORIES)[number];
-
-type Expense = {
-  id: string;
-  title: string;
-  amount: number;
-
-  category: Category;
-  date: string;
-  createdAt: string;
-};
+import { CATEGORIES, Category, Expense } from "@/types/expense";
 
 export function GET(req: NextRequest) {
   const category = req.nextUrl.searchParams.get("category");
